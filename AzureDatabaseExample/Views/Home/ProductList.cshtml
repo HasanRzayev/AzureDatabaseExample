@@ -1,0 +1,12 @@
+﻿@using AzureDatabaseExample.data
+@model List<Product>
+
+
+        @foreach (var product in Model)
+        {
+            <tr>
+                <td>@product.Name</td>
+                <td>@product.Color</td>
+            </tr>
+        }
+

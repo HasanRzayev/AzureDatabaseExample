@@ -1,0 +1,59 @@
+﻿@using AzureDatabaseExample.data
+@{
+    ViewData["Title"] = "Home Page";
+}
+@model List<Product>
+
+<div class="text-center">
+    <h1 class="display-4">Welcome</h1>
+    <p>Learn about <a href="https://docs.microsoft.com/aspnet/core">building Web apps with ASP.NET Core</a>.</p>
+    <select id="CategoryList" asp-items=@ViewBag.Categories>
+ 
+    </select>
+
+
+
+    <table class="table">
+                <thead>
+                    <tr>
+                        <th>Mehsulun Adı</th>
+                        <th>Rengi</th>
+                    </tr>
+                </thead>
+                <tbody  id = "productList" >
+                   
+                </tbody>
+            </table>
+   
+  
+
+</div>
+
+
+@section Scripts{
+    <script>
+        $(document).ready(function () {
+            $("#CategoryList").change(function () {
+                var categoryId = $(this).val();
+                $.ajax({
+                    type: "GET",
+                    url: "@Url.Action("GetProductsByCategoryId", "Home")",
+                    data: { categoryId: categoryId },
+                    success: function (data) {
+                        // Ürünlerin listelendiği yer
+                        console.log(data)
+                        $("#productList").html(data);
+                        
+                    },
+                    error: function () {
+                        alert("Bir hata oluştu!");
+                    }
+                });
+            });
+        });
+    </script>
+              
+
+
+
+}
