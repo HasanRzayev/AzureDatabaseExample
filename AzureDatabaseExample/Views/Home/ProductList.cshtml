@@ -4,9 +4,13 @@
 
         @foreach (var product in Model)
         {
+
             <tr>
+        <td>@product.ProductId</td>
                 <td>@product.Name</td>
-                <td>@product.Color</td>
+        <td>@product.Color</td>
+
+     
             </tr>
         }
 
